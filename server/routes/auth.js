@@ -1,12 +1,15 @@
 import { Router } from 'express'
-import AuthController from '../controllers/AuthController'
-import CheckConflicts from '../middleware/CheckConflicts'
+import AuthController from '../controllers/AuthController.js'
+import CheckConflicts from '../middleware/CheckConflicts.js'
+
 
 const authRouter = Router();
 
-authRouter.post('/login',  AuthController.userLogin)
+authRouter.post('/login',
+CheckConflicts.authenticateUserDetails,  
+AuthController.userLogin)
 
-authRouter.post('/signup', 
+authRouter.post('/signup',
 CheckConflicts.validateUserDetails,
 AuthController.userSignup)
 

@@ -1,8 +1,8 @@
 import { Router } from 'express'
-// import authRouter from './auth'
+import authRouter from './auth.js'
 
 const apiRoutes = Router();
-// apiRoutes.use('/auth', authRouter)
+apiRoutes.use('/auth', authRouter)
 
 apiRoutes.get('/', (req, res) => {
     res.status(200).send({
