@@ -19,9 +19,9 @@ class AuthController{
     static employeeList(req, res){
         const { company_email, personal_email} = req.body;
         const userid = new Date();
-        res.status(200).json({
-            message: 'success'
-        })
+        // res.status(200).json({
+        //     message: 'success'
+        // })
         connect.query(
             `INSERT INTO users (userid, company_name, personal_name) 
             VALUES '${company_email}', '${userid}', '${personal_email}'`,
