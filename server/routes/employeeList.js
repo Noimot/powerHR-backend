@@ -5,7 +5,7 @@ import AuthController from '../controllers/AuthController.js'
 
 const employeeRouter = Router();
 
-employeeRouter.post('/employee',
+employeeRouter.post('/',
 AuthController.employeeList
 )
 
