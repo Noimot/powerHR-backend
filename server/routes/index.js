@@ -4,7 +4,7 @@ import employeeRouter from './employeeList.js'
 
 const apiRoutes = Router();
 apiRoutes.use('/auth', authRouter)
-apiRoutes.use('/employeeList', employeeRouter)
+apiRoutes.use('/employee', employeeRouter)
 
 apiRoutes.get('/', (req, res) => {
     res.status(200).send({
