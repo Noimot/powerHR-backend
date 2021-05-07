@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import authRouter from './auth.js'
-import employeeRouter from './employeeList.js'
+import employeeRouter from './employee.js'
 
 const apiRoutes = Router();
 apiRoutes.use('/auth', authRouter)

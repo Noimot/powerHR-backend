@@ -1,12 +1,12 @@
 import { Router } from 'express'
-import AuthController from '../controllers/AuthController.js'
-
+// import AuthController from '../controllers/AuthController.js'
+import EmployeeController from '../controllers/EmployeeController.js'
 
 
 const employeeRouter = Router();
 
-employeeRouter.post('/',
-AuthController.employeeList
+employeeRouter.post('/all',
+EmployeeController.employee
 )
 
 
