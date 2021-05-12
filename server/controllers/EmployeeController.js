@@ -2,12 +2,12 @@ import connect from '../database/connect.js'
 
 class EmployeeController {
     static employee(req, res) {
-        const { company_email, personal_email } = req.body;
+        const { company_email, personal_email, employee_name } = req.body;
         const userid = Date.now();
 
         connect.query(
-            `INSERT INTO add_employee (userid, company_email, personal_email)
-            VALUES ('${userid}', '${company_email}', '${personal_email}')
+            `INSERT INTO add_employee (userid, company_email, personal_email, employee_name)
+            VALUES ('${userid}', '${company_email}', '${personal_email}', '${employee_name}')
             `,
             (err, response) => {
                 console.log(err, 'err')

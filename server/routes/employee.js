@@ -5,7 +5,7 @@ import EmployeeController from '../controllers/EmployeeController.js'
 
 const employeeRouter = Router();
 
-employeeRouter.post('/all',
+employeeRouter.post('/add',
 EmployeeController.employee
 )
 
