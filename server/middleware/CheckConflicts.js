@@ -1,3 +1,5 @@
+import connect from '../database/connect.js'
+
 class CheckConflicts {
     static validateUserDetails(req, res, next){
         const password = req.body.password;
@@ -20,6 +22,25 @@ class CheckConflicts {
         }
         next();
     }
+
+    static existingUser(req, res, next) {
+        const { company_email, personal_email } = req.body;
+        connect.query(
+          `SELECT company_email, personal_email FROM add_employee`,
+          (err, response) => {
+            console.log(err, "err");
+            const result = JSON.parse(JSON.stringify(response.rows));
+            if (result.length > 0) {
+              return res.status(409).json({
+                status: "error",
+                message: "email address already exit",
+              });
+            }
+            next();
+          }
+        );
+      }
+    
 }
 
 export default CheckConflicts;
