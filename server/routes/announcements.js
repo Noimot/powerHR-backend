@@ -3,7 +3,8 @@ import AnnouncementController from '../controllers/AnnouncementController.js'
 const announcementRouter = Router();
 
 
-announcementRouter.get('/announcements',
+announcementRouter.get('/all',
+AnnouncementController.getAllAnnouncement
 )
 
 
