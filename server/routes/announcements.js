@@ -1,7 +1,5 @@
 import { Router } from 'express'
-import AuthController from '../controllers/AuthController.js'
-import CheckConflicts from '../middleware/CheckConflicts.js'
-
+import AnnouncementController from '../controllers/AnnouncementController.js'
 const announcementRouter = Router();
 
 
@@ -9,7 +7,8 @@ announcementRouter.get('/announcements',
 )
 
 
-announcementRouter.post('/announcements',
+announcementRouter.post('/new',
+AnnouncementController.announcement,
 )
 
 announcementRouter.patch('/announcements',
@@ -20,3 +19,5 @@ announcementRouter.get('/announcements/:id',
 
 announcementRouter.delete('/announcements/:id',
 )
+
+export default announcementRouter;

@@ -26,7 +26,7 @@ class CheckConflicts {
     static existingUser(req, res, next) {
         const { company_email, personal_email } = req.body;
         connect.query(
-          `SELECT company_email, personal_email FROM add_employee`,
+          `SELECT company_email, personal_email FROM add_employee WHERE company_email='${company_email}'`,
           (err, response) => {
             console.log(err, "err");
             const result = JSON.parse(JSON.stringify(response.rows));
