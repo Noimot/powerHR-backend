@@ -16,6 +16,14 @@ class AuthController{
         })
     }
 
+    static adminName(req, res){
+        res.status(200).json({
+            status: 'successful',
+            message: 'welcome to power-hr',
+            name: process.env.ADMIN_NAME
+        })
+    }
+
 }
 
 export default AuthController;

@@ -13,5 +13,8 @@ authRouter.post('/signup',
 CheckConflicts.validateUserDetails,
 AuthController.userSignup)
 
+authRouter.get('/admin',
+AuthController.adminName)
+
 
 export default authRouter;
