@@ -15,7 +15,7 @@ class CheckConflicts {
 
     static authenticateUserDetails(req, res, next){
         const { password, adminId, email } = req.body;
-        if(password !== process.env.ADMIN_PASSWORD || adminId !== process.env.ADMIN_ID_NUMBER || email !== process.env.ADMIN_EMAIL){
+        if(password !== process.env.ADMIN_PASSWORD && adminId !== process.env.ADMIN_ID_NUMBER || password !== process.env.ADMIN_PASSWORD && email !== process.env.ADMIN_EMAIL){
             return res.status(401).json({
                 message: 'incorrect password or id'
             })
