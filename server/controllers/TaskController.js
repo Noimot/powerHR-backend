@@ -30,6 +30,32 @@ class TaskController {
         )
 
     }
+
+    static allTasks (req, res) {
+        connect.query(
+            `SELECT * FROM task`,
+            (err, response) => {
+                if (err) return res.json({message: 'there is an error'})
+                    const result = JSON.parse(JSON.stringify(response.rows))
+                    if (result) {
+                        return res.status(201).json({
+                            status: 'success',
+                            statusCode: 201,
+                            message: 'get data in database',
+                            tasks: result
+                        })
+                    }
+                    else {
+                        return res.status(404).json({
+                            status: 'failed',
+                            statusCode: 404,
+                            message: 'failed to get data'
+                        })
+                    }
+            }
+
+        )
+    }
 }
 
 export default TaskController;

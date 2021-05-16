@@ -7,4 +7,8 @@ taskRouter.post('/new',
 TaskController.addTask
 )
 
+taskRouter.get('/all',
+TaskController.allTasks
+)
+
 export default taskRouter;
