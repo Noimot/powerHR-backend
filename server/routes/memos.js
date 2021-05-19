@@ -7,4 +7,8 @@ memoRouter.post('/new',
 MemoController.addMemo
 )
 
+memoRouter.get('/all',
+MemoController.getAllMemo
+)
+
 export default memoRouter;

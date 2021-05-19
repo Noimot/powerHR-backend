@@ -25,6 +25,30 @@
              }
          )
      }
+     static getAllMemo (req,res) {
+         connect.query(
+             `SELECT * FROM memo`,
+             (err, response) => {
+                 if (err) return res.json({ message: 'There is an error'})
+                 const result = JSON.parse(JSON.stringify(response.rows))
+                 if(result) {
+                     return res.status(201).json({
+                         status: 'success',
+                         statusCode: 201,
+                         message: 'successfully retrieved data from database',
+                         memos: result
+                     })
+                 }
+                 else {
+                     return res.status(400).json({
+                         status: 'failed',
+                         statusCode: 400,
+                         message: 'failed to connect to database'
+                     })
+                 }
+             }
+         )
+     }
  }
 
 
