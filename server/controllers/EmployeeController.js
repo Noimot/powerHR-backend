@@ -31,6 +31,30 @@ class EmployeeController {
 
         )
     }
+    static allEmployee(req, res) {
+        connect.query(
+            `SELECT * FROM add_employee`,
+            (err, response) => {
+                if (err) return res.json({ message: 'an error occur'})
+                const result = JSON.parse(JSON.stringify(response.rows))
+                if (result) {
+                    return res.status(201).json({
+                        status: 'success',
+                        statusCode: 201,
+                        message: 'successfully connected to database',
+                        employeeData: result
+                    })
+                }
+                else {
+                    return res.status(400).json({
+                        status: 'failed',
+                        statusCode: 400,
+                        message: 'failed to get data from database'
+                    })
+                }
+            }
+        )
+    }
 }
 
 export default EmployeeController;

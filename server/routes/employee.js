@@ -11,6 +11,9 @@ CheckConflicts.existingUser,
 EmployeeController.employee
 )
 
+employeeRouter.get('/all',
+EmployeeController.allEmployee)
+
 
 
 
