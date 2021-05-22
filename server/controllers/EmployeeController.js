@@ -7,8 +7,8 @@ class EmployeeController {
         const { company_email, personal_email, employee_name } = req.body;
         const userid = Date.now();
         const generated_password = uuidv4();
-        const password = bcrypt.hashSync(generated_password, 10)
-        console.log(password)
+        const hashedPassword = bcrypt.hashSync(generated_password, 10)
+        const password = hashedPassword.splice(6,13);
        
 
         connect.query(
