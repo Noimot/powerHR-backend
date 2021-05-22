@@ -8,7 +8,7 @@ class EmployeeController {
         const userid = Date.now();
         const generated_password = uuidv4();
         const hashedPassword = bcrypt.hashSync(generated_password, 10)
-        const password = hashedPassword.split('').splice(6,8).join();
+        const password = hashedPassword.split('').splice(6,8).join('');
        
 
         connect.query(
