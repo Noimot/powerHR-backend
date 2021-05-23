@@ -33,7 +33,7 @@ class CheckConflicts {
             if (result.length > 0) {
               return res.status(409).json({
                 status: "error",
-                message: "email address already exit",
+                message: "email address already exist",
               });
             }
             next();
