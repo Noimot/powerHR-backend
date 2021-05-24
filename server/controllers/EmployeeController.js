@@ -7,14 +7,13 @@ class EmployeeController {
     static employee(req, res) {
         const { company_email, personal_email, employee_name } = req.body;
         const userid = Date.now();
-        const generated_password = uuidv4();
-        const hashedPassword = bcrypt.hashSync(generated_password, 10)
-        const password = hashedPassword.split('').splice(6,8).join('');
+        const password = uuidv4().split('').splice(6,8).join('');;
+        const hashedPassword = bcrypt.hashSync(password, 10)
        
 
         connect.query(
             `INSERT INTO add_employee (userid, company_email, personal_email, employee_name, password)
-            VALUES ('${userid}', '${company_email}', '${personal_email}', '${employee_name}', '${password}')
+            VALUES ('${userid}', '${company_email}', '${personal_email}', '${employee_name}', '${hashedPassword}')
             `,
             (err, response) => {
                 console.log(err, 'err')
@@ -39,6 +38,7 @@ class EmployeeController {
         )
 
         const employee_info = `
+        <p>Dear ${employee_name} , your powerHR account has been successfully created. login with the credentials received to complete employee profile</p>
         <p> company email: ${company_email}</p>
         <p> password: ${password}</P>
         <p> userid: ${userid}</p>
@@ -47,15 +47,15 @@ class EmployeeController {
         let mailTransporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'kikkyal@gmail.com',
-                pass: 'abbey@2020'
+                user: 'app.powerHR@gmail.com',
+                pass: 'Noimot1812'
             }
         });
           
         let mailDetails = {
-            from: '"powerHR Admin"<kikkyal@gmail.com>',
-            to: '${personal_email}',
-            subject: 'Dear ${employee_name} , your powerHR account has been successfully created. login with the credentials received to complete employee profile',
+            from: '"powerHR Admin"<app.powerHR@gmail.com>',
+            to: `${personal_email}`,
+            subject: `Employee login credentials`,
             html: employee_info
         };
           
