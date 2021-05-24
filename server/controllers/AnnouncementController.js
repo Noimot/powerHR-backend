@@ -4,15 +4,15 @@ class AnnouncementController {
     static announcement(req, res) {
         const { announcements } = req.body;
         // const date_posted = Date.now();
-console.log(announcements)
+        console.log(announcements)
         connect.query(
             `INSERT INTO announcement (announcements) VALUES ('${announcements}')`,
             (err, response) => {
                 console.log(err, 'err')
-                if(err) return res.json({message:'there is an error'})
+                if (err) return res.json({ message: 'there is an error' })
                 const result = JSON.parse(JSON.stringify(response.rows))
-                if (result){
-                    return res.status(200).json({
+                if (result) {
+                    return res.status(201).json({
                         status: 'success',
                         statusCode: 201,
                         message: 'data successfully added to database'
@@ -30,20 +30,20 @@ console.log(announcements)
 
         )
     }
+
     static getAllAnnouncement(req, res) {
-    
         connect.query(
             `SELECT * FROM announcement`,
             (err, response) => {
                 console.log(err, 'err')
-                if(err) return res.json({message:'there is an error'})
+                if (err) return res.json({ message: 'there is an error' })
                 const result = JSON.parse(JSON.stringify(response.rows))
-                if (result){
+                if (result) {
                     return res.status(200).json({
                         status: 'success',
                         statusCode: 201,
                         message: 'data successfully added to database',
-                        announcements:result
+                        announcements: result
                     })
                 }
                 else {
