@@ -32,8 +32,9 @@ class CheckConflicts {
                   password,
                   result[12].password
                 );
+                // if(!password && adminId !== process.env.ADMIN_ID_NUMBER || password !== process.env.ADMIN_PASSWORD && email !== process.env.ADMIN_EMAIL || company_email !== result[12].company_email && password !== result[12].password || userid !== result[12].userid && password !== result[12].password ){
 
-        if(password !== process.env.ADMIN_PASSWORD && adminId !== process.env.ADMIN_ID_NUMBER || password !== process.env.ADMIN_PASSWORD && email !== process.env.ADMIN_EMAIL || company_email !== result[12].company_email && password !== result[12].password || userid !== result[12].userid && password !== result[12].password ){
+        if((password !== process.env.ADMIN_PASSWORD && adminId !== process.env.ADMIN_ID_NUMBER) || (password !== process.env.ADMIN_PASSWORD && email !== process.env.ADMIN_EMAIL) || (company_email !== result[12].company_email && password !== result[12].password) || (userid !== result[12].userid && password !== result[12].password) ){
             return res.status(401).json({
                 message: 'incorrect password or id'
             })

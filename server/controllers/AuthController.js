@@ -30,19 +30,19 @@ class AuthController {
                         result[12].password
                     );
 
-                    if (adminPassword || checkPassword) {
+                    if (adminPassword) {
                         const tokenData = {
                             company_email,
-                            role: result[0].role,
-                            first_name: result[0].first_name,
-                            last_name: result[0].last_name,
-                            userid: result[0].userid,
+                            role: result[12].role,
+                            first_name: result[12].first_name,
+                            last_name: result[12].last_name,
+                            userid: result[12].userid,
                             email: adminEmail,
                             adminId,
                             expiryTime: "500h"
                         };
                         const token = Token.generateToken(tokenData);
-                        return res.status(200).json({
+                         res.status(200).json({
                             status: "success",
                             statusCode: 200,
                             message: "login successful",
