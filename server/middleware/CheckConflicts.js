@@ -16,31 +16,33 @@ class CheckConflicts {
 
 
     static authenticateUserDetails(req, res, next){
-        const { password, adminId, email, company_email, userid } = req.body;
+        const { password, adminId, email} = req.body;
 
-        connect.query(
-          `SELECT password, role, first_name, last_name, company_email, userid FROM add_employee`,
-          (err, response) => {
-              // console.log(err, "err");
-              // console.log(response, "result");
-              const result = JSON.parse(JSON.stringify(response.rows));
-              // console.log(result, "result");
-              console.log(result[12], "main result");
+        // const { password, adminId, email, company_email, userid } = req.body;
 
-              if (result.length > 0) {
-                const hashedPassword = bcrypt.compareSync(
-                  password,
-                  result[12].password
-                );
+        // connect.query(
+        //   `SELECT password, role, first_name, last_name, company_email, userid FROM add_employee`,
+        //   (err, response) => {
+        //       // console.log(err, "err");
+        //       // console.log(response, "result");
+        //       const result = JSON.parse(JSON.stringify(response.rows));
+        //       // console.log(result, "result");
+        //       console.log(result[12], "main result");
+
+        //       if (result.length > 0) {
+        //         const hashedPassword = bcrypt.compareSync(
+        //           password,
+        //           result[12].password
+        //         );
                 // if(!password && adminId !== process.env.ADMIN_ID_NUMBER || password !== process.env.ADMIN_PASSWORD && email !== process.env.ADMIN_EMAIL || company_email !== result[12].company_email && password !== result[12].password || userid !== result[12].userid && password !== result[12].password ){
 
-        if((password !== process.env.ADMIN_PASSWORD && adminId !== process.env.ADMIN_ID_NUMBER) || (password !== process.env.ADMIN_PASSWORD && email !== process.env.ADMIN_EMAIL) || (company_email !== result[12].company_email && password !== result[12].password) || (userid !== result[12].userid && password !== result[12].password) ){
+        if(password !== process.env.ADMIN_PASSWORD && adminId !== process.env.ADMIN_ID_NUMBER || password !== process.env.ADMIN_PASSWORD && email !== process.env.ADMIN_EMAIL){
             return res.status(401).json({
                 message: 'incorrect password or id'
             })
         }
-      }
-    })
+      
+  
         next();
           }
 
