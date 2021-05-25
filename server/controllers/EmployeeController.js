@@ -38,7 +38,7 @@ class EmployeeController {
         )
 
         const employee_info = `
-        <p>Dear ${employee_name} , your powerHR account has been successfully created. login with the credentials received to complete employee profile</p>
+        <p>Dear ${employee_name} , your powerHR account has been successfully created. login with the credentials received to complete your profile</p>
         <p> company email: ${company_email}</p>
         <p> password: ${password}</P>
         <p> userid: ${userid}</p>
