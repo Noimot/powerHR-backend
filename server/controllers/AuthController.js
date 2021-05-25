@@ -47,14 +47,14 @@ class AuthController {
                             statusCode: 200,
                             message: "login successful",
                             token,
-                        });
-                    } else {
-                        return res.status(400).json({
-                            status: "error",
-                            statusCode: 400,
-                            message: "Email or Password is wrong",
-                        });
-                    }
+                        });}
+                    // } else {
+                    //      res.status(400).json({
+                    //         status: "error",
+                    //         statusCode: 400,
+                    //         message: "Email or Password is wrong",
+                    //     });
+                    // }
 
                     // res.status(200).json({
                     //     message: 'login successful',
