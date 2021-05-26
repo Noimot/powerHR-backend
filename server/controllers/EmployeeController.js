@@ -7,13 +7,13 @@ class EmployeeController {
     static employee(req, res) {
         const { company_email, personal_email, employee_name } = req.body;
         const userid = Date.now();
-        const password = uuidv4().split('').splice(6,8).join('');;
+        const password = uuidv4().split('').splice(6,8).join('');
         const hashedPassword = bcrypt.hashSync(password, 10)
        
 
         connect.query(
-            `INSERT INTO add_employee (userid, company_email, personal_email, employee_name, password)
-            VALUES ('${userid}', '${company_email}', '${personal_email}', '${employee_name}', '${hashedPassword}')
+            `INSERT INTO add_employee (userid, company_email, personal_email, employee_name, password, role)
+            VALUES ('${userid}', '${company_email}', '${personal_email}', '${employee_name}', '${hashedPassword}', 'employee')
             `,
             (err, response) => {
                 console.log(err, 'err')
