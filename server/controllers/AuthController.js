@@ -14,14 +14,7 @@ class AuthController {
         const adminEmail = process.env.ADMIN_EMAIL;
         const adminId = process.env.ADMIN_ID_NUMBER;
 
-        if (adminPassword) {
-            const tokenData = {
-                role: 'admin',
-                email: adminEmail,
-                adminId,
-                expiryTime: "500h"
-            };
-            const token = Token.generateToken(tokenData);
+        const token = Token.generateToken(req.user);
             return res.status(200).json({
                 status: "success",
                 statusCode: 200,
@@ -29,14 +22,7 @@ class AuthController {
                 token,
             });
         }
-        else {
-            res.status(400).json({
-                status: "error",
-                statusCode: 400,
-                message: "Email or Password is wrong",
-            });
-        }
-    }
+    
 
 
     static userSignup(req, res) {

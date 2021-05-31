@@ -16,17 +16,70 @@ class CheckConflicts {
 
 
   static authenticateUserDetails(req, res, next) {
-    const { password, adminId, email } = req.body;
+    console.log(req.body)
+    const { password, adminId } = req.body;
 
-    if (password !== process.env.ADMIN_PASSWORD && adminId !== process.env.ADMIN_ID_NUMBER || password !== process.env.ADMIN_PASSWORD && email !== process.env.ADMIN_EMAIL) {
-      return res.status(401).json({
-        message: 'incorrect password or id'
-      })
+    const loginType = () => {
+      const isEmail = validateEmail(adminId);
+      if (isEmail) {
+        return adminId === process.env.ADMIN_EMAIL
+      }
+      else {
+        return adminId === process.env.ADMIN_ID_NUMBER
+      }
     }
-    next();
+
+
+
+    function validateEmail(email) {
+      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email.toLowerCase());
+    }
+
+    connect.query(
+      `SELECT * FROM add_employee WHERE company_email='${adminId}' or userid='${adminId}' `,
+      async (err, response) => {
+        const [result] = await JSON.parse(JSON.stringify(response.rows))
+        if (result) {
+          bcrypt.compare(password, result.password, function (err, doc) {
+            if (doc) {
+              req.user = {
+                role: result.role,
+                userid: result.userid,
+                expiryTime: "500h",
+                employee_name: result.employee_name
+              }
+              next();
+            }
+
+          })
+        }
+        else {
+          adminLogin()
+        }
+
+      }
+
+    )
+
+    function adminLogin() {
+      if (!loginType() || password !== process.env.ADMIN_PASSWORD) {
+        return res.status(401).json({
+          message: 'incorrect password or id'
+        })
+      } else {
+        console.log('this is admin')
+        req.user = {
+          role: 'admin',
+          expiryTime: "500h"
+        }
+        next()
+      }
+    }
+
+    // next();
   }
 
-  
   static existingUser(req, res, next) {
     const { company_email, personal_email } = req.body;
     connect.query(
