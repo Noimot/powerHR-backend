@@ -98,6 +98,23 @@ class CheckConflicts {
     );
   }
 
+  static checkTaskid(req, res, next) {
+    const { id } = req.body
+    connect.query(
+      `SELECT * FROM task WHERE id='${id}'`,
+      (err, response) => {
+       const result = JSON.parse(JSON.stringify(response.rows))
+        if (result.length <= 0) {
+          return res.status(400).json({
+            status: 'error',
+            message: 'id does not exist'
+          })
+        }
+        next()
+      }
+    )
+  }
+
 }
 
 export default CheckConflicts;

@@ -11,6 +11,7 @@ class TaskController {
                 console.log(err, 'err')
                 if (err) return res.json({ message: 'There is an error' })
                 const result = JSON.parse(JSON.stringify(response.rows))
+                console.log(result)
                 if (result) {
                     return res.status(201).json({
                         status: 'success',
@@ -56,6 +57,32 @@ class TaskController {
 
         )
     }
+
+    static completedTask (req, res) {
+        const { id } = req.body;
+        connect.query(
+            `UPDATE task SET iscompleted=true WHERE id='${id}'`,
+            (err, response) => {
+                const result = JSON.parse(JSON.stringify(response.rows))
+                console.log(response)
+                if(result){
+                    return res.status(201).json({
+                        status: 'success',
+                        statusCode: 201,
+                        message: 'successfully updated database'
+                    })
+                }
+                else {
+return res.status(400).json({
+                    status: 'failed',
+                    statusCode: 400,
+                    message: 'failed to update database'
+                })            
+            }
+            
+    })
+
+}
 }
 
 export default TaskController;
