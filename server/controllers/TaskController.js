@@ -58,14 +58,14 @@ class TaskController {
         )
     }
 
-    static completedTask (req, res) {
+    static completedTask(req, res) {
         const { id } = req.body;
         connect.query(
             `UPDATE task SET iscompleted=true WHERE id='${id}'`,
             (err, response) => {
                 const result = JSON.parse(JSON.stringify(response.rows))
                 console.log(response)
-                if(result){
+                if (result) {
                     return res.status(201).json({
                         status: 'success',
                         statusCode: 201,
@@ -73,16 +73,16 @@ class TaskController {
                     })
                 }
                 else {
-return res.status(400).json({
-                    status: 'failed',
-                    statusCode: 400,
-                    message: 'failed to update database'
-                })            
-            }
-            
-    })
+                    return res.status(400).json({
+                        status: 'failed',
+                        statusCode: 400,
+                        message: 'failed to update database'
+                    })
+                }
 
-}
+            })
+
+    }
 }
 
 export default TaskController;

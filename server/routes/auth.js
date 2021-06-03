@@ -9,9 +9,9 @@ authRouter.post('/login',
 CheckConflicts.authenticateUserDetails,  
 AuthController.userLogin)
 
-authRouter.post('/signup',
-CheckConflicts.validateUserDetails,
-AuthController.userSignup)
+// authRouter.post('/signup',
+// CheckConflicts.validateUserDetails,
+// AuthController.userSignup)
 
 authRouter.get('/admin',
 AuthController.adminName)
