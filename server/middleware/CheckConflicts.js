@@ -100,9 +100,11 @@ class CheckConflicts {
 
   static checkTaskid(req, res, next) {
     const { id } = req.body
+    console.log(id)
     connect.query(
       `SELECT * FROM task WHERE id='${id}'`,
       (err, response) => {
+        console.log(response)
         const result = JSON.parse(JSON.stringify(response.rows))
         console.log(result)
         if (result.length <= 0) {         
