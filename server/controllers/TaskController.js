@@ -64,7 +64,7 @@ class TaskController {
             `UPDATE task SET iscompleted=true WHERE id='${id}'`,
             (err, response) => {
                 const result = JSON.parse(JSON.stringify(response.rows))
-                console.log(response)
+                // console.log(response.rows)
                 if (result) {
                     return res.status(201).json({
                         status: 'success',

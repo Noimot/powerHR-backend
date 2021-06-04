@@ -103,11 +103,18 @@ class CheckConflicts {
     connect.query(
       `SELECT * FROM task WHERE id='${id}'`,
       (err, response) => {
-       const result = JSON.parse(JSON.stringify(response.rows))
-        if (result.length <= 0) {
+        const result = JSON.parse(JSON.stringify(response.rows))
+        console.log(result)
+        if (result.length <= 0) {         
           return res.status(400).json({
             status: 'error',
             message: 'id does not exist'
+          })
+        }
+        else if (result[0].iscompleted === true) {
+          return res.status(200).json({
+            status: 'successful',
+            message: 'iscompleted is true'
           })
         }
         next()
