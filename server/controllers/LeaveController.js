@@ -6,7 +6,7 @@ class LeaveController {
         const { name, start_date, end_date, reason } = req.body;
 
         connect.query(
-            `INSERT INTO leave_request (name, start_date, end_date, reason) VALUES ('${name}',${start_date}, ${end_date}. '${reason}')`,
+            `INSERT INTO leave_request (name, start_date, end_date, reason) VALUES ('${name}', '${start_date}', '${end_date}', '${reason}')`,
             (err, response) => {
                 if (err) return ({ message: 'there is an error' })
                 console.log(err, 'err')
