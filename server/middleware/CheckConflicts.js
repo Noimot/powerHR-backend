@@ -125,13 +125,14 @@ class CheckConflicts {
   }
 
   static checkUserExistence (req, res) {
+    console.log(req.body)
     const { name } = req.body;
     connect.query(
       `SELECT employee_name FROM add_employee WHERE employee_name='${name}'`,
       (err, response) => {
         console.log(err, 'err')
         const result = JSON.parse(JSON.stringify(response.rows))
-        if(!result){
+        if(result.length === 0){
           return res.status(400).json({
             status: 'failed',
             statusCode: 400,
