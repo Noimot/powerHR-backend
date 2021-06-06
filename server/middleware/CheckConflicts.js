@@ -125,8 +125,8 @@ class CheckConflicts {
   }
 
   static checkUserExistence (req, res) {
-    console.log(req.body)
     const { name } = req.body;
+    console.log(req.body)
     connect.query(
       `SELECT employee_name FROM add_employee WHERE employee_name='${name}'`,
       (err, response) => {
