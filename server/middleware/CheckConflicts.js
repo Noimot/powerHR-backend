@@ -124,7 +124,7 @@ class CheckConflicts {
     )
   }
 
-  static checkUserExistence (req, res) {
+  static checkUserExistence (req, res, next) {
     const { name } = req.body;
     console.log(req.body)
     connect.query(
