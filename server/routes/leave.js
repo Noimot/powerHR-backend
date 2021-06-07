@@ -9,4 +9,8 @@ CheckConflicts.checkUserExistence,
 LeaveController.leaveRequest
 )
 
+leaveRouter.get('/all',
+LeaveController.getPendingLeave
+)
+
 export default leaveRouter;
