@@ -140,7 +140,7 @@ class CheckConflicts {
             message: 'id does not exist'
           })
         }
-        else if (result[0].leave_status === 'deny') {
+        else if (result[0].leave_status === 'deny' || result[0].leave_status === 'approve') {
           return res.status(200).json({
             status: 'successful',
             message: 'updated leave status'
