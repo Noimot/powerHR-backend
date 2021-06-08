@@ -55,10 +55,10 @@ class LeaveController {
     }
 
     static updateLeaveStatus (req, res) {
-        const { id, reason_for_app_deny_leave } = req.body;
+        const { id, reason_for_app_deny_leave, leave_status } = req.body;
         console.log(req.body)
         connect.query(
-            `UPDATE leave_request SET leave_status='deny', reason_for_app_deny_leave='${reason_for_app_deny_leave}' WHERE id='${id}'`,
+            `UPDATE leave_request SET leave_status='${leave_status}', reason_for_app_deny_leave='${reason_for_app_deny_leave}' WHERE id='${id}'`,
             (err, response) => {
                 console.log(response)
                 console.log(err, 'err')
