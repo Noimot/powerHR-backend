@@ -13,4 +13,8 @@ leaveRouter.get('/all',
 LeaveController.getPendingLeave
 )
 
+leaveRouter.put('/update',
+LeaveController.updateLeaveStatus
+)
+
 export default leaveRouter;

@@ -2,7 +2,7 @@ import connect from '../database/connect.js'
 
 class LeaveController {
     static leaveRequest(req, res) {
-        console.log(req.body)
+        // console.log(req.body)
         const { name, start_date, end_date, reason } = req.body;
 
         connect.query(
@@ -48,6 +48,33 @@ class LeaveController {
                         status: 'failed',
                         statusCode: 400,
                         message: 'failed to get data from database'
+                    })
+                }
+            }
+        )
+    }
+
+    static updateLeaveStatus (req, res) {
+        const { id, reason_for_app_deny_leave } = req.body;
+        console.log(req.body)
+        connect.query(
+            `UPDATE leave_request SET leave_status='deny', reason_for_app_deny_leave='${reason_for_app_deny_leave}' WHERE id='${id}'`,
+            (err, response) => {
+                console.log(response)
+                console.log(err, 'err')
+                const result = JSON.parse(JSON.stringify(response.rows))
+                if (result) {
+                    return res.status(201).json({
+                        status: 'success',
+                        statusCode: 201,
+                        message: 'successfully updated database'
+                    })
+                }
+                else {
+                    return res.status(400).json({
+                        status: 'failed',
+                        statusCode: 400,
+                        message: 'failed to connect to database'
                     })
                 }
             }
