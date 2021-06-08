@@ -14,6 +14,7 @@ LeaveController.getPendingLeave
 )
 
 leaveRouter.put('/update',
+CheckConflicts.checkLeaveid,
 LeaveController.updateLeaveStatus
 )
 

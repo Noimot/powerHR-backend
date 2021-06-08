@@ -124,6 +124,33 @@ class CheckConflicts {
     )
   }
 
+
+  static checkLeaveid(req, res, next) {
+    const { id } = req.body
+    console.log(id)
+    connect.query(
+      `SELECT * FROM leave_request WHERE id='${id}'`,
+      (err, response) => {
+        console.log(response)
+        const result = JSON.parse(JSON.stringify(response.rows))
+        console.log(result)
+        if (result.length <= 0) {         
+          return res.status(400).json({
+            status: 'error',
+            message: 'id does not exist'
+          })
+        }
+        else if (result[0].leave_status === 'deny') {
+          return res.status(200).json({
+            status: 'successful',
+            message: 'updated leave status'
+          })
+        }
+        next()
+      }
+    )
+  }
+
   static checkUserExistence (req, res, next) {
     const { name } = req.body;
     console.log(req.body)
