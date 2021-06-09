@@ -1,12 +1,14 @@
 import { Router } from 'express'
-// import AuthController from '../controllers/AuthController.js'
 import EmployeeController from '../controllers/EmployeeController.js'
 import CheckConflicts from '../middleware/CheckConflicts.js'
+import Token from '../utils/Token.js'
 
 
 const employeeRouter = Router();
 
 employeeRouter.post('/add',
+Token.verifyToken,
+CheckConflicts.validatePermission,
 CheckConflicts.existingUser,
 EmployeeController.employee
 )

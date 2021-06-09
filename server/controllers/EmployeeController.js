@@ -5,6 +5,7 @@ import nodemailer from 'nodemailer'
 
 class EmployeeController {
     static employee(req, res) {
+        console.log(req.body)
         const { company_email, personal_email, employee_name } = req.body;
         const userid = Date.now();
         const password = uuidv4().split('').splice(6,8).join('');

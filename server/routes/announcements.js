@@ -1,5 +1,8 @@
 import { Router } from 'express'
 import AnnouncementController from '../controllers/AnnouncementController.js'
+import Token from '../utils/Token.js'
+import CheckConflicts from '../middleware/CheckConflicts.js'
+
 const announcementRouter = Router();
 
 
@@ -9,16 +12,10 @@ AnnouncementController.getAllAnnouncement
 
 
 announcementRouter.post('/new',
+Token.verifyToken,
+CheckConflicts.validatePermission,
 AnnouncementController.announcement,
 )
 
-announcementRouter.patch('/announcements',
-)
-
-announcementRouter.get('/announcements/:id',
-)
-
-announcementRouter.delete('/announcements/:id',
-)
 
 export default announcementRouter;
