@@ -7,7 +7,6 @@ const leaveRouter = Router();
 
 leaveRouter.post('/new',
 Token.verifyToken,
-CheckConflicts.validatePermission,
 CheckConflicts.checkUserExistence,
 LeaveController.leaveRequest
 )
@@ -17,6 +16,8 @@ LeaveController.getPendingLeave
 )
 
 leaveRouter.put('/update',
+Token.verifyToken,
+CheckConflicts.validatePermission,
 CheckConflicts.checkLeaveid,
 LeaveController.updateLeaveStatus
 )
