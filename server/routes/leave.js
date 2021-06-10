@@ -7,7 +7,6 @@ const leaveRouter = Router();
 
 leaveRouter.post('/new',
 Token.verifyToken,
-CheckConflicts.checkUserExistence,
 LeaveController.leaveRequest
 )
 
