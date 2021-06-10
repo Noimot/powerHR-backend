@@ -47,7 +47,8 @@ class CheckConflicts {
                 role: result.role,
                 userid: result.userid,
                 expiryTime: "500h",
-                employee_name: result.employee_name
+                employee_name: result.employee_name,
+                department: result.department
               }
               next();
             }

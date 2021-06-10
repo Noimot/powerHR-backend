@@ -3,10 +3,11 @@ import connect from '../database/connect.js'
 class LeaveController {
     static leaveRequest(req, res) {
         // console.log(req.body)
-        const { name, start_date, end_date, reason } = req.body;
+        const { start_date, end_date, reason } = req.body;
+        const { employee_name, userid, department } = req.decoded
 
         connect.query(
-            `INSERT INTO leave_request (name, start_date, end_date, reason, leave_status) VALUES ('${name}', '${start_date}', '${end_date}', '${reason}', 'pending')`,
+            `INSERT INTO leave_request (employee_name, start_date, end_date, reason, leave_status, department, userid) VALUES ('${employee_name}', '${start_date}', '${end_date}', '${reason}', 'pending', '${department}', '${userid}')`,
             (err, response) => {
                 if (err) return ({ message: 'there is an error' })
                 console.log(err, 'err')
