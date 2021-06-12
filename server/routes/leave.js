@@ -21,4 +21,9 @@ CheckConflicts.checkLeaveid,
 LeaveController.updateLeaveStatus
 )
 
+leaveRouter.get('/userid',
+Token.verifyToken,
+LeaveController.employeeLeaveStatus
+)
+
 export default leaveRouter;

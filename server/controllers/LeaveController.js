@@ -33,7 +33,7 @@ class LeaveController {
         )
     }
 
-    static getPendingLeave (req, res) {
+    static getPendingLeave(req, res) {
         connect.query(
             `SELECT * FROM leave_request`,
             (err, response) => {
@@ -58,7 +58,7 @@ class LeaveController {
         )
     }
 
-    static updateLeaveStatus (req, res) {
+    static updateLeaveStatus(req, res) {
         const { id, reason_for_app_deny_leave, leave_status } = req.body;
         console.log(req.body)
         connect.query(
@@ -79,6 +79,33 @@ class LeaveController {
                         status: 'failed',
                         statusCode: 400,
                         message: 'failed to connect to database'
+                    })
+                }
+            }
+        )
+    }
+
+    static employeeLeaveStatus(req, res) {
+        const { userid } = req.decoded;
+
+        connect.query(
+            `SELECT * FROM leave_request WHERE userid='${userid}'`,
+            (err, response) => {
+                if (err) return res.json({ err: 'an error occur' });
+                const result = response.rows
+                if (result) {
+                    return res.status(201).json({
+                        status: 'success',
+                        statusCode: 201,
+                        message: 'successfully retrieved data from database',
+                        leaveStatus: result
+                    })
+                }
+                else {
+                    return res.status(400).json({
+                        status: 'failed',
+                        statusCode: 400,
+                        message: 'failed to get data from database'
                     })
                 }
             }
