@@ -5,9 +5,12 @@ class LeaveController {
         // console.log(req.body)
         const { start_date, end_date, reason } = req.body;
         const { employee_name, userid, department } = req.decoded
+        console.log(req.decoded)
+        // const { userid} = req.decoded
+
 
         connect.query(
-            `INSERT INTO leave_request (employee_name, start_date, end_date, reason, leave_status, department, userid) VALUES ('${employee_name}', '${start_date}', '${end_date}', '${reason}', 'pending', '${department}', '${userid}')`,
+            `INSERT INTO leave_request (start_date, end_date, reason, leave_status, userid, name, department) VALUES ('${start_date}', '${end_date}', '${reason}', 'pending', '${userid}', '${employee_name}', '${department}')`,
             (err, response) => {
                 if (err) return ({ message: 'there is an error' })
                 console.log(err, 'err')
