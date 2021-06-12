@@ -49,7 +49,7 @@ class EmployeeController {
             service: 'gmail',
             auth: {
                 user: 'app.powerHR@gmail.com',
-                pass: 'Noimot1812'
+                pass: 'powerhrapp'
             }
         });
           
