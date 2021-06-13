@@ -2,9 +2,9 @@
 
  class MemoController {
      static addMemo (req, res) {
-         const  {subject, memos } = req.body;
+         const  {category, subject, memos } = req.body;
          connect.query(
-             `INSERT INTO memo (subject, memos) VALUES ( '${subject}', '${memos}' )`,
+             `INSERT INTO memo (category, subject, memos) VALUES ( '${category}', '${subject}', '${memos}' )`,
              (err, response) => {
                  if (err) return ({ message: 'there is an error' })
                  const result = JSON.parse(JSON.stringify(response.rows))
