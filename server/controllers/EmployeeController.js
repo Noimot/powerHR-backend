@@ -95,6 +95,32 @@ class EmployeeController {
             }
         )
     }
+
+    static getEmployeeByUserid (req, res) {
+            const { userid } =req.body;
+            connect.query(
+                `SELECT * FROM add_employee WHERE userid='${userid}'`,
+                (err, response) => {
+                    if(err) return res.json({err: 'an error occur'})
+                    const result = response.rows;
+                    if(result) {
+                        return res.status(201).json({
+                            status: 'success',
+                            statusCode: 201,
+                            message: 'successfully fetched data from database',
+                            employeeData: result
+                        })
+                    }
+                    else {
+                        return res.status(400).json({
+                            status:'failed',
+                            statusCode: 400,
+                            message: 'unable to fetch data from database'
+                        })
+                    }
+                }
+            )
+    }
 }
 
 export default EmployeeController;

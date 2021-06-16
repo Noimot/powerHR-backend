@@ -16,6 +16,10 @@ EmployeeController.employee
 employeeRouter.get('/all',
 EmployeeController.allEmployee)
 
+employeeRouter.get('/userid',
+EmployeeController.getEmployeeByUserid
+)
+
 
 
 
