@@ -98,6 +98,8 @@ class EmployeeController {
 
     static getEmployeeByUserid (req, res) {
             const { userid } =req.body;
+            console.log(userid)
+
             connect.query(
                 `SELECT * FROM add_employee WHERE userid='${userid}'`,
                 (err, response) => {
