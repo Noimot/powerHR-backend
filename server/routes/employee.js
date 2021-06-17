@@ -16,7 +16,7 @@ EmployeeController.employee
 employeeRouter.get('/all',
 EmployeeController.allEmployee)
 
-employeeRouter.get('/userid',
+employeeRouter.post('/userid',
 EmployeeController.getEmployeeByUserid
 )
 
