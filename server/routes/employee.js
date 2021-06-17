@@ -20,6 +20,10 @@ employeeRouter.get('/userid',
 EmployeeController.getEmployeeByUserid
 )
 
+// employeeRouter.post('/update',
+// EmployeeController.updateEmployeeData
+// )
+
 
 
 
