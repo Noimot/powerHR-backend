@@ -20,9 +20,9 @@ employeeRouter.post('/userid',
 EmployeeController.getEmployeeByUserid
 )
 
-// employeeRouter.post('/update',
-// EmployeeController.updateEmployeeData
-// )
+employeeRouter.put('/update',
+EmployeeController.updateEmployeeData
+)
 
 
 

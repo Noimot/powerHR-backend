@@ -126,36 +126,34 @@ class EmployeeController {
             }
         )
     }
-    // static updateEmployeeData(req, res) {
+    static updateEmployeeData(req, res) {
 
-    //     const {first_name, middle_name, last_name, department, location, account_name, phone_number, date_of_birth, nationality, religion, marital_status, bank_account_number, name_of_bank} = req.body
-    //     connect.query(
-    //         `INSERT INTO add_employee (first_name, middle_name, last_name, department, location, account_name, phone_number, date_of_birth, nationality, religion, marital_status, bank_account_number, name_of_bank)
-    //     VALUES ('${first_name}', '${middle_name}', '${last_name}', '${department}', '${location}', '${account_name}', '${phone_number}', '${date_of_birth}' , '${nationality}', '${religion}', '${marital_status}', '${bank_account_number}', '${name_of_bank}' )
-    //     `,
-    //         (err, response) => {
-    //             console.log(err, 'err')
-    //             const result = JSON.parse(JSON.stringify(response.rows))
-    //             if (result) {
-    //                 return res.status(200).json({
-    //                     status: 'success',
-    //                     statusCode: 201,
-    //                     message: 'data successfully added to database'
-    //                 })
-    //             }
-    //             else {
-    //                 return res.status(400).json({
-    //                     status: 'fail',
-    //                     statusCode: '400',
-    //                     message: 'failed to connect to database'
-    //                 })
-    //             }
+        const {first_name, middle_name, last_name, department, location, account_name, phone_number, date_of_birth, nationality, religion, marital_status, bank_account_number, name_of_bank, userid} = req.body
+        connect.query(
+            `UPDATE add_employee SET first_name='${first_name}', middle_name='${middle_name}', last_name='${last_name}', department='${department}', location='${location}', account_name='${account_name}', phone_number='${phone_number}', date_of_birth='${date_of_birth}', nationality='${nationality}', religion='${religion}', marital_status='${marital_status}', bank_account_number='${bank_account_number}', name_of_bank='${name_of_bank}' WHERE userid='${userid}'`,
+            (err, response) => {
+                console.log(err, 'err')
+                const result = JSON.parse(JSON.stringify(response.rows))
+                if (result) {
+                    return res.status(200).json({
+                        status: 'success',
+                        statusCode: 201,
+                        message: 'data successfully added to database'
+                    })
+                }
+                else {
+                    return res.status(400).json({
+                        status: 'fail',
+                        statusCode: '400',
+                        message: 'failed to connect to database'
+                    })
+                }
 
-    //         }
+            }
 
-    //     )
+        )
 
-    // }
+    }
 }
 
 export default EmployeeController;
