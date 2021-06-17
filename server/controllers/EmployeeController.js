@@ -98,12 +98,13 @@ class EmployeeController {
 
     static getEmployeeByUserid (req, res) {
             const { userid } =req.body;
-            console.log(userid)
+            // console.log(req.body, 'err')
 
             connect.query(
                 `SELECT * FROM add_employee WHERE userid='${userid}'`,
                 (err, response) => {
-                    if(err) return res.json({err: 'an error occur'})
+                    // if(err) return res.json({message: 'an error occur'})
+                    console.log(err, 'err')
                     const result = response.rows;
                     if(result) {
                         return res.status(201).json({
