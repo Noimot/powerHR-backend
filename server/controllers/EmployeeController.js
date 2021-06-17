@@ -105,7 +105,7 @@ class EmployeeController {
                 (err, response) => {
                     // if(err) return res.json({message: 'an error occur'})
                     console.log(err, 'err')
-                    const result = response.rows;
+                    const result = JSON.parse(JSON.stringify(response.rows));
                     if(result) {
                         return res.status(201).json({
                             status: 'success',
